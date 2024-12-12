@@ -6,6 +6,7 @@
 - [3 - Core Dependencies](#3---core-dependencies)
 - [4 - Development Dependencies](#4---development-dependencies)
 - [5 - Installation](#5---installation)
+- [6 - - Start the Server via Console](#6---start-the-server-via-console)
 
 ### 1 - Project Overview
 This project is a web application built with React, leveraging various libraries and tools to enhance its development and performance.
@@ -47,4 +48,12 @@ To install all the necessary dependencies, run the following commands:
 ```bash
 npm install
 npm install @react-oauth/google@latest
+```
+
+### 6 - Start the Server via Console
+
+To start the server, run the following command:
+
+```bash
+npm run dev
 ```
