@@ -1,0 +1,15 @@
+#botonHero{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background: linear-gradient(87.46deg, #4338CA 0%, #5E52F3 100%);
+    border-radius: 6px;
+    width: 240px;
+    height: 5.7vh;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 29px;
+    line-height: 95.19%;
+}
