@@ -58,7 +58,7 @@ const router = createBrowserRouter([
 
 const validateToken = async (token) => {
   try {
-    const response = await axios.get("http://localhost:8080/api/users/validateToken", {
+    const response = await axios.get(`${apiUrl}users/validateToken`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     return response.data.response;
