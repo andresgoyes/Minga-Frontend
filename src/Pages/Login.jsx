@@ -51,7 +51,7 @@ const Login = () => {
   };
 
   const loginWithGoogle = () => {
-    window.location.href = `${apiUrl}/auth/signIn/google`; // Usa apiUrl para redirigir
+    window.location.href = `${apiUrl}auth/signIn/google`; // Usa apiUrl para redirigir
   };
 
   return (
