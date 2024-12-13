@@ -2,6 +2,7 @@ import { Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import axios from 'axios';
+import apiUrl from '../utils/apiConfig'; // Importa apiUrl desde el archivo de configuración
 
 const AuthorCompanyRoute = ({ children }) => {
     const dispatch = useDispatch();
@@ -11,7 +12,8 @@ const AuthorCompanyRoute = ({ children }) => {
         const fetchUser = async () => {
             if (token && !user) {
                 try {
-                    const response = await axios.get('http://localhost:8080/api/users/validateToken', {
+                    // Reemplaza la URL con apiUrl
+                    const response = await axios.get(`${apiUrl}users/validateToken`, {
                         headers: { Authorization: `Bearer ${token}` },
                     });                    
                 } catch (error) {

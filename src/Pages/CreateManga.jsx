@@ -3,6 +3,7 @@ import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
+import apiUrl from '../utils/apiConfig'; // Importa apiUrl
 
 export default function CreateManga() {
     const token = localStorage.getItem("token");
@@ -18,7 +19,7 @@ export default function CreateManga() {
     useEffect(() => {
         const validateToken = async () => {
             try {
-                const response = await axios.get("http://localhost:8080/api/users/validateToken", {
+                const response = await axios.get(`${apiUrl}users/validateToken`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 const user = response.data.response;
@@ -36,7 +37,7 @@ export default function CreateManga() {
                 const userId = localStorage.getItem("userId");
                 if (!userId) throw new Error("User ID not found in localStorage.");
                 const config = { headers: { Authorization: `Bearer ${token}` } };
-                const response = await axios.get(`http://localhost:8080/api/authors/byUser/${userId}`, config);
+                const response = await axios.get(`${apiUrl}authors/byUser/${userId}`, config);
 
                 const authorData = response?.data?.response[0];
                 if (authorData) {
@@ -63,9 +64,8 @@ export default function CreateManga() {
 
         const fetchCategories = async () => {
             try {
-                const token = localStorage.getItem("token");
                 const config = { headers: { Authorization: `Bearer ${token}` } };
-                const response = await axios.get("http://localhost:8080/api/categories/all", config);
+                const response = await axios.get(`${apiUrl}categories/all`, config);
 
                 setCategories(response.data.response);
                 console.log("Categories fetched:", response.data.response);
@@ -94,7 +94,7 @@ export default function CreateManga() {
             [photo.current.name]: photo.current.value,
         };
 
-        const url = "http://localhost:8080/api/mangas/create/";
+        const url = `${apiUrl}mangas/create/`; // Usa apiUrl para la URL
         const headers = { headers: { Authorization: `Bearer ${token}` } };
 
         try {

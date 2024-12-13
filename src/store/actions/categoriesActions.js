@@ -1,9 +1,11 @@
 import axios from 'axios';
+import apiUrl from '../../utils/apiConfig'; // Importamos apiUrl
 
 export const READ_CATEGORIES_SUCCESS = "READ_CATEGORIES_SUCCESS";
 export const READ_CATEGORIES_ERROR = "READ_CATEGORIES_ERROR";
 
-const apiUrlCategories = "http://localhost:8080/api/categories/all";
+// Construimos la URL usando apiUrl
+const apiUrlCategories = `${apiUrl}categories/all`;
 
 export const readCategories = () => async (dispatch) => {
   const token = localStorage.getItem("token");

@@ -25,6 +25,7 @@ import AuthorCompanyRoute from './Components/AuthorCompanyRoute.jsx';
 import MangaDetails from './Pages/MangaDetails.jsx';
 import Chapter from './Pages/Chapter.jsx';
 import ChapterList from './Components/ChapterList.jsx';
+import apiUrl from './utils/apiConfig.js'
 
 const router = createBrowserRouter([
   {
@@ -33,7 +34,7 @@ const router = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "/home", element: <Home /> },
       { path: "/mangas", element: <PrivateRoute><Mangas /></PrivateRoute> },
-      { path: "/mangas-manager", element: <PrivateRoute><AuthorCompanyRoute><MangasAuth /></AuthorCompanyRoute></PrivateRoute>},
+      { path: "/mangas-manager", element: <PrivateRoute><AuthorCompanyRoute><MangasAuth /></AuthorCompanyRoute></PrivateRoute> },
       { path: "/manga-details/:id/:newIndex", element: <PrivateRoute><MangaDetails /></PrivateRoute> },
       { path: "/chapter/:id/:newIndex", element: <PrivateRoute><Chapter /></PrivateRoute> },
       { path: "/chapterlist/:id/:newIndex", element: <PrivateRoute><ChapterList /></PrivateRoute> },
@@ -49,7 +50,7 @@ const router = createBrowserRouter([
       { path: "/profile", element: <PrivateRoute><EditAuthor /></PrivateRoute> },
       { path: "/createchapter/:id/", element: <PrivateRoute><CreateChapter /></PrivateRoute> },
       { path: "/editmanga/", element: <PrivateRoute><EditChapter /></PrivateRoute> },
-      
+
       { path: "*", element: <NotFound /> },
     ],
   },
@@ -68,6 +69,9 @@ const validateToken = async (token) => {
 };
 
 function App() {
+
+  console.log('Current API URL:', apiUrl);
+  console.log('Environment:', import.meta.env.MODE);
   const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(true);
 

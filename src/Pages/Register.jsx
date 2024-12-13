@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import logMinga from "../assets/log_minga.jpg";
 import backgroundLogin from "../assets/Background_lognup.jpeg";
 import { register } from "../store/actions/registerActions";
+import apiUrl from "../utils/apiConfig"; // Importa la configuración de la API
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -61,7 +61,7 @@ const Register = () => {
   };
 
   const registerWithGoogle = () => {
-    window.location.href = "http://localhost:8080/api/auth/signIn/google";
+    window.location.href = `${apiUrl}/auth/signIn/google`; // Utiliza apiUrl
   };
 
   return (

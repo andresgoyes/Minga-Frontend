@@ -7,6 +7,7 @@ import fondo1 from "../assets/Rectangle606.png";
 import location from "../assets/location-marker.png";
 import icon1 from "../assets/icon.png";
 import Swal from 'sweetalert2';
+import apiUrl from "../utils/apiConfig"; // Importa la configuración de la API
 
 const EditAuthor = () => {
     const token = localStorage.getItem("token");
@@ -35,7 +36,7 @@ const EditAuthor = () => {
     useEffect(() => {
         const validateToken = async () => {
             try {
-                const response = await axios.get("http://localhost:8080/api/users/validateToken", {
+                const response = await axios.get(`${apiUrl}/users/validateToken`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 const user = response.data.response;
@@ -53,7 +54,7 @@ const EditAuthor = () => {
                 const userId = localStorage.getItem("userId");
                 if (!userId) throw new Error("User ID not found in localStorage.");
                 const config = { headers: { Authorization: `Bearer ${token}` } };
-                const response = await axios.get(`http://localhost:8080/api/authors/byUser/${userId}`, config);
+                const response = await axios.get(`${apiUrl}authors/byUser/${userId}`, config);
                 const authorData = response.data.response[0];
                 if (authorData) {
                     const formattedDate = formatDate(authorData.date);
@@ -89,7 +90,7 @@ const EditAuthor = () => {
         try {
             if (authorData._id) {
                 const response = await axios.put(
-                    `http://localhost:8080/api/authors/update/${authorData._id}`,
+                    `${apiUrl}authors/update/${authorData._id}`,
                     updatedData,
                     { headers: { Authorization: `Bearer ${token}` } }
                 );
@@ -98,7 +99,7 @@ const EditAuthor = () => {
                 const userId = localStorage.getItem("userId");
                 const newAuthorData = { ...updatedData, user_id: userId };
                 const response = await axios.post(
-                    `http://localhost:8080/api/authors/create`,
+                    `${apiUrl}authors/create`,
                     newAuthorData,
                     { headers: { Authorization: `Bearer ${token}` } }
                 );
@@ -125,7 +126,7 @@ const EditAuthor = () => {
             if (result.isConfirmed) {
                 try {
                     const response = await axios.delete(
-                        `http://localhost:8080/api/authors/delete/${authorData._id}`,
+                        `${apiUrl}authors/delete/${authorData._id}`,
                         { headers: { Authorization: `Bearer ${token}` } }
                     );
                     Swal.fire(

@@ -1,4 +1,5 @@
 import axios from "axios";
+import apiUrl from '../../utils/apiConfig'; // Importamos apiUrl
 
 export const createAuthorRequest = () => ({ type: 'CREATE_AUTHOR_REQUEST' });
 export const createAuthorSuccess = (author) => ({ type: 'CREATE_AUTHOR_SUCCESS', payload: author });
@@ -10,7 +11,7 @@ export const createAuthor = (authorData) => {
     dispatch(createAuthorRequest());
 
     try {
-      const response = await axios.post('http://localhost:8080/api/authors/create', authorData, {
+      const response = await axios.post(`${apiUrl}authors/create`, authorData, { // Usamos apiUrl aquí
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },

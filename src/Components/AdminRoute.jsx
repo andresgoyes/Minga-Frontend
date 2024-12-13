@@ -2,6 +2,7 @@ import { Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import axios from 'axios';
+import apiUrl from '../utils/apiConfig';
 
 const AdminRoute = ({ children }) => {
     const dispatch = useDispatch();
@@ -11,7 +12,7 @@ const AdminRoute = ({ children }) => {
         const fetchUser = async () => {
             if (token && !user) {
                 try {
-                    const response = await axios.get('http://localhost:8080/api/users/validateToken', {
+                    const response = await axios.get(`${apiUrl}users/validateToken`, {
                         headers: { Authorization: `Bearer ${token}` },
                     });
                     dispatch(setUser(response.data.user)); // Actualiza el usuario en el estado

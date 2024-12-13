@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { logoutAuthor } from './authorActions';
+import apiUrl from '../../utils/apiConfig'; // Importamos apiUrl
 
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -9,7 +10,7 @@ export const LOGOUT = 'LOGOUT';
 
 const handleApiRequest = async (formData) => {
   try {
-    const response = await axios.post('http://localhost:8080/api/auth/signin', formData);
+    const response = await axios.post(`${apiUrl}auth/signin`, formData); // Usamos apiUrl aquí
     return response.data;
   } catch (error) {
     const errorMessage = error.response?.data?.message || 'Error al iniciar sesión';
@@ -43,7 +44,7 @@ export const logout = () => (dispatch) => {
     const token = localStorage.getItem('token');
     if (token) {
       axios.post(
-        'http://localhost:8080/api/auth/signout',
+        `${apiUrl}/auth/signout`, // Usamos apiUrl aquí
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );

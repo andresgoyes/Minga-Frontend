@@ -1,4 +1,5 @@
 import axios from 'axios';
+import apiUrl from '../../utils/apiConfig'; // Importamos apiUrl
 
 export const fetchChaptersRequest = () => ({
   type: 'FETCH_CHAPTERS_REQUEST',
@@ -18,7 +19,8 @@ export const fetchChapters = (id, newIndex, token) => {
   return async (dispatch) => {
     dispatch(fetchChaptersRequest());
     try {
-      const response = await axios.get(`http://localhost:8080/api/chapters/byManga/${id}`, {
+      // Usamos apiUrl para construir la URL
+      const response = await axios.get(`${apiUrl}chapters/byManga/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -2,11 +2,12 @@ import React, { useRef } from 'react';
 import { Toaster, toast } from 'react-hot-toast';
 import axios from 'axios';
 import image from '../assets/default-profile.png';
+import apiUrl from '../utils/apiConfig';  // Importa apiUrl
 
 const CreateCompany = () => {
     const formRef = useRef();
 
-    const url = 'http://localhost:8080/api/companies/create';
+    const url = `${apiUrl}companies/create`;  // Usa apiUrl para la URL
     const token = localStorage.getItem('token');
     const headers = { headers: { 'Authorization': `Bearer ${token}` } };
 
@@ -27,7 +28,7 @@ const CreateCompany = () => {
         };
 
         try {
-            await axios.post(url, data, headers);
+            await axios.post(url, data, headers);  // Usa la URL dinámica
             toast.success('Company successfully created');
             event.target.reset();
             window.location.href = '/createauthor';

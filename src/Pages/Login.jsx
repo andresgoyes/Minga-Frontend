@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import backgroundLogin from "../assets/Background_lognin.jpeg";
 import { login } from "../store/actions/authActions";
+import apiUrl from "../utils/apiConfig"; // Importa la configuración de la API
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -50,7 +51,7 @@ const Login = () => {
   };
 
   const loginWithGoogle = () => {
-    window.location.href = "http://localhost:8080/api/auth/signIn/google";
+    window.location.href = `${apiUrl}/auth/signIn/google`; // Usa apiUrl para redirigir
   };
 
   return (

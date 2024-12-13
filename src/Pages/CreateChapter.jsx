@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
 import { useParams, useNavigate } from "react-router-dom";
+import apiUrl from "../utils/apiConfig"; // Importa apiUrl
 
 export default function CreateChapter() {
     const token = localStorage.getItem("token");
@@ -24,7 +25,7 @@ export default function CreateChapter() {
             toast.error("Manga ID not found.");
         }
     }, [id]);
-    
+
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setChapterData(prevState => ({
@@ -51,7 +52,8 @@ export default function CreateChapter() {
 
         const headers = { headers: { Authorization: `Bearer ${token}` } };
         try {
-            await axios.post("http://localhost:8080/api/chapters/create", data, headers);
+            // Reemplaza la URL hardcoded con apiUrl
+            await axios.post(`${apiUrl}chapters/create`, data, headers);
             toast.success("Chapter created successfully.");
         } catch (error) {
             if (error.response?.data?.message) {

@@ -9,6 +9,7 @@ import add from "../assets/add.png";
 import edit from "../assets/edit2.png";
 import Swal from "sweetalert2";
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
+import apiUrl from "../utils/apiConfig"; // Importa la configuración de la API
 
 const MangasAuth = () => {
     const dispatch = useDispatch();
@@ -32,7 +33,7 @@ const MangasAuth = () => {
         const validateTokenAndFetchAuthor = async () => {
             try {
                 const response = await axios.get(
-                    "http://localhost:8080/api/users/validateToken",
+                    `${apiUrl}users/validateToken`,
                     {
                         headers: { Authorization: `Bearer ${token}` },
                     }
@@ -41,7 +42,7 @@ const MangasAuth = () => {
                 localStorage.setItem("userId", user._id);
 
                 const authorResponse = await axios.get(
-                    `http://localhost:8080/api/authors/byUser/${user._id}`,
+                    `${apiURL}authors/byUser/${user._id}`,
                     {
                         headers: { Authorization: `Bearer ${token}` },
                     }
@@ -76,7 +77,7 @@ const MangasAuth = () => {
                 const categoryParam = selectedCategory === "all" ? "" : selectedCategory;
 
                 const response = await axios.get(
-                    `http://localhost:8080/api/mangas/all?page=${pageNumber}&search=${searchTerm}&category_id=${categoryParam}&author_id=${authorId}`,
+                    `${apiURL}mangas/all?page=${pageNumber}&search=${searchTerm}&category_id=${categoryParam}&author_id=${authorId}`,
                     {
                         headers: { Authorization: `Bearer ${token}` },
                     }
@@ -123,7 +124,7 @@ const MangasAuth = () => {
 
             if (result.isConfirmed) {
                 // Realizar la solicitud DELETE para borrar el manga
-                await axios.delete(`http://localhost:8080/api/mangas/delete/${mangaId}`, {
+                await axios.delete(`${apiURL}mangas/delete/${mangaId}`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
 

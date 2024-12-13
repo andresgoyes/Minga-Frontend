@@ -1,4 +1,5 @@
-import axios from "axios";
+import axios from 'axios';
+import apiUrl from '../../utils/apiConfig'; // Importamos apiUrl
 
 export const createCompanyRequest = () => ({ type: 'CREATE_COMPANY_REQUEST' });
 export const createCompanySuccess = (company) => ({ type: 'CREATE_COMPANY_SUCCESS', payload: company });
@@ -12,7 +13,8 @@ export const createCompany = (companyData) => {
     const headers = { headers: { 'Authorization': `Bearer ${token}` } };
 
     try {
-      const response = await axios.post('http://localhost:8080/api/companies/create', companyData, headers);
+      // Usamos apiUrl para construir la URL
+      const response = await axios.post(`${apiUrl}companies/create`, companyData, headers);
       dispatch(createCompanySuccess(response.data));
     } catch (error) {
       dispatch(createCompanyFailure(error.response?.data?.message || 'Something went wrong'));

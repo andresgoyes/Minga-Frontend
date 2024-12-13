@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 import {  User, Users, MapPin, ToggleLeft, ToggleRight } from 'lucide-react';
 import backgroundImage from '../assets/junta_de_trabajo.jpeg';
+import apiUrl from '../utils/apiConfig'; // Importa apiUrl
 
 const AdminPanel = () => {
   const [activeTab, setActiveTab] = useState('companies');
@@ -26,8 +27,8 @@ const AdminPanel = () => {
     try {
       const token = localStorage.getItem('token');
       const config = { headers: { Authorization: `Bearer ${token}` } };
-      const endpoint = tab === 'companies' ? '/api/dashboard/companies' : '/api/dashboard/authors';
-      const { data } = await axios.get(`http://localhost:8080${endpoint}`, config);
+      const endpoint = tab === 'companies' ? 'dashboard/companies' : 'dashboard/authors';
+      const { data } = await axios.get(`${apiUrl}${endpoint}`, config); // Usando apiUrl
       tab === 'companies' ? setCompanies(data.response.companies) : setAuthors(data.response.authors);
     } catch (err) {
       setError('Failed to fetch data. Please try again later.');
@@ -56,8 +57,8 @@ const AdminPanel = () => {
       const token = localStorage.getItem('token');
       const config = { headers: { Authorization: `Bearer ${token}` } };
       const url = type === 'companies'
-        ? 'http://localhost:8080/api/dashboard/companies/toggle'
-        : 'http://localhost:8080/api/dashboard/authors/toggle';
+        ? `${apiUrl}dashboard/companies/toggle` // Usando apiUrl
+        : `${apiUrl}dashboard/authors/toggle`; // Usando apiUrl
 
       await axios.put(url, data, config);
     } catch (err) {

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import apiUrl from '../../utils/apiConfig'; // Importa apiUrl
 
 export const REGISTER_REQUEST = 'REGISTER_REQUEST';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
@@ -7,7 +8,7 @@ export const SET_USER = 'SET_USER';
 
 const handleApiRequest = async (formData) => {
   try {
-    const response = await axios.post('http://localhost:8080/api/users/register', formData);
+    const response = await axios.post(`${apiUrl}users/register`, formData);
     return response.data;
   } catch (error) {
     const errorMessage = error.response?.data?.message || 'Error al registrar el usuario';
