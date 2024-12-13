@@ -42,7 +42,7 @@ const MangasAuth = () => {
                 localStorage.setItem("userId", user._id);
 
                 const authorResponse = await axios.get(
-                    `${apiURL}authors/byUser/${user._id}`,
+                    `${apiUrl}authors/byUser/${user._id}`,
                     {
                         headers: { Authorization: `Bearer ${token}` },
                     }
