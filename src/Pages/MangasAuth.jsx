@@ -77,7 +77,7 @@ const MangasAuth = () => {
                 const categoryParam = selectedCategory === "all" ? "" : selectedCategory;
 
                 const response = await axios.get(
-                    `${apiURL}mangas/all?page=${pageNumber}&search=${searchTerm}&category_id=${categoryParam}&author_id=${authorId}`,
+                    `${apiUrl}mangas/all?page=${pageNumber}&search=${searchTerm}&category_id=${categoryParam}&author_id=${authorId}`,
                     {
                         headers: { Authorization: `Bearer ${token}` },
                     }
@@ -124,7 +124,7 @@ const MangasAuth = () => {
 
             if (result.isConfirmed) {
                 // Realizar la solicitud DELETE para borrar el manga
-                await axios.delete(`${apiURL}mangas/delete/${mangaId}`, {
+                await axios.delete(`${apiUrl}mangas/delete/${mangaId}`, {
                     headers: { Authorization: `Bearer ${token}` },
                 });
 
