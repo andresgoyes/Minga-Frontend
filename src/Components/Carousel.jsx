@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import hero1 from "../assets/hero1.png"
+import hero2 from "../assets/hero2.png"
 
 const slidesData = [
   {
     id: 1,
-    personaje: "https://s3-alpha-sig.figma.com/img/7010/55a8/ad631c0e34af539abb86743a2cafbda1?Expires=1734307200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=afDZIigVOIi1aDh1F0QlVYrD6c4pTsh6FfRxrFC1piGH8-lhP735YXt1yVtRNzQbC0QOVhgHWU3ovNPPUw60Clig35Nq~PpiU~ymZIz1J4tKLK5aIARWyZLctzxbuqZTADjEzSzbK1G2vmVwipAHj7ElpDiaPVX6T~yjFfhIvies19wi5ll55JPUM-1yvDS2nn70DrBcL2LUPAKPmaUEy0-AdZ9Ke41QOi-NEq4~H-ehRqNLBM0EtEKcdkabnMMoHPrgZv~a6-zn6WtVjHVF4kZAcLB3TgDqQZW4-uLL1t5N2PTbgD41GZPujL0kVTdk~OjtzExHpK~szQFxSHXSDA__",
-    comic: "https://s3-alpha-sig.figma.com/img/0b79/70a5/01731543bd32ac773a1b2fa236c42971?Expires=1734307200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=bd2m7QcJyCsQrumWdBCHWBR9E8UL0JPRsNXdLefFJ4st8MUJf6uagMHjonK3UaZI0e1tnSP7-ig-px94YBA6BGjE6lZV7xMDlWu~XYNa8LZhldFsnyRuSPSLssrlME1aiAKsCYnOGllEBf-Of7pXgTVYB1kVgwnbj5SFsaKyV0d~qJFx22nemEZ2uGNqNN1nMryUSMb42tOl5B7-KxjWKiF~vRZ9iWeUOp8VVao53acwpJuerra7Ul7TD-n4Im02ab2ks8G4s0LN~gCbcBkrB1W55Nr7EslQyChuA-Us9mjDwzoYTVYwCuVXc2lU3mfTB0jm7qmC2bvq9yAYUbux1w__",
+    personaje: hero1,
+    comic: hero2,
     titulo: "Shonen",
     descripcion:
       "Is the manga that is aimed at adolescent boys. They are series with large amounts of action, in which humorous situations often occur. The camaraderie between members of a collective or a combat team stands out.",
